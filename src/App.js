@@ -10,7 +10,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
-import AppBar from 'material-ui/AppBar';
 
 let Vote
 const voteAddress = '0xf79e7fbe199ed688f58024493dc89473fcce4257'
@@ -31,6 +30,7 @@ class App extends Component {
       question: '',
       forVotes: 0,
       against: 0,
+      activeUser: 'None',
       vote: true
     }
   }
@@ -87,7 +87,7 @@ class App extends Component {
       notifcations: true
     })
 
-    console.log(user)
+    this.setState({ activeUser: user.name })
   }
 
   render() {
@@ -101,6 +101,7 @@ class App extends Component {
           <h1>{this.state.question}</h1>
           <h3>YES: {this.state.forVotes}</h3>
           <h3>NO: {this.state.against}</h3>
+          <h4>Active User: {this.state.activeUser}</h4>
           <h5 className="App-intro">Cast your vote!</h5>
           <DropDownMenu maxHeight={300} width={500} value={this.state.vote} onChange={this.handleDropDownChange}>
             <MenuItem value={true} key='yes' primaryText='YES' />
